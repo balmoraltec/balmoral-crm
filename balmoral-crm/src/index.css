@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 5% 96%; 
+    --foreground: 240 5% 10%; 
+    
+    --card: 0 0% 100%; 
+    --card-foreground: 240 5% 10%; 
+    
+    --popover: 0 0% 100%; 
+    --popover-foreground: 240 5% 10%; 
+    
+    --primary: 39 100% 50%; 
+    --primary-foreground: 0 0% 100%; 
+    
+    --secondary: 240 3% 25%; 
+    --secondary-foreground: 0 0% 98%; 
+    
+    --muted: 240 4% 85%; 
+    --muted-foreground: 240 4% 45%; 
+    
+    --accent: 25 80% 55%; 
+    --accent-foreground: 0 0% 100%; 
+    
+    --destructive: 0 72% 51%; 
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 240 5% 85%; 
+    --input: 240 5% 90%; 
+    --ring: 39 100% 50%; 
+    
+    --radius: 0.5rem;
+
+    --color-gold: #D4AF37;
+    --color-dark-gold: #B8860B;
+    --color-dark-orange: #FF8C00; 
+    --color-burnt-orange: #D2691E;
+    --color-dark-gray: #333333; 
+    --color-medium-gray: #666666;
+    --color-light-gray: #F5F5F5;
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+  }
+
+  .dark {
+    --background: 240 5% 10%; 
+    --foreground: 0 0% 98%; 
+
+    --card: 240 4% 15%; 
+    --card-foreground: 0 0% 98%; 
+
+    --popover: 240 4% 15%; 
+    --popover-foreground: 0 0% 98%; 
+
+    --primary: 39 100% 55%; 
+    --primary-foreground: 240 5% 10%; 
+
+    --secondary: 240 3% 70%; 
+    --secondary-foreground: 240 5% 10%; 
+    
+    --muted: 240 4% 20%; 
+    --muted-foreground: 240 4% 65%; 
+
+    --accent: 25 85% 60%; 
+    --accent-foreground: 0 0% 100%; 
+    
+    --border: 240 4% 25%; 
+    --input: 240 4% 20%; 
+    --ring: 39 100% 55%; 
+
+    --color-gold: #E6C35C; 
+    --color-dark-gold: #D4AF37;
+    --color-dark-orange: #FFA500; 
+    --color-burnt-orange: #FF8C00;
+    --color-dark-gray: #CCCCCC; 
+    --color-medium-gray: #999999;
+    --color-light-gray: #2C2C2C; 
+    --color-white: #0F0F0F; 
+    --color-black: #FFFFFF; 
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Roboto', 'Montserrat', sans-serif;
+    background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726c?q=80&w=2070&auto=format&fit=crop'); /* Imagem tecnológica */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Para o efeito de paralaxe/fixo */
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: hsla(var(--background), 0.8); /* Sobreposição com cor de fundo e opacidade */
+    z-index: -1; /* Coloca a sobreposição atrás do conteúdo */
+  }
+
+  .dark body::before {
+    background-color: hsla(var(--background), 0.85); /* Ajuste de opacidade para dark mode */
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    @apply text-foreground;
+  }
+  p, span, a, li, button, input, label, textarea {
+    font-family: 'Roboto', sans-serif;
+     @apply text-foreground;
+  }
+
+  .dark body, 
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6,
+  .dark p, .dark span, .dark a, .dark li, .dark button, .dark input, .dark label, .dark textarea {
+    @apply text-foreground; 
+  }
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-dark-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-orange {
+  background: linear-gradient(135deg, var(--color-dark-orange) 0%, var(--color-burnt-orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-gold-to-orange {
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-dark-orange) 100%);
+}
+
+.bg-gradient-gray-dark-light {
+  background: linear-gradient(135deg, var(--color-dark-gray) 0%, var(--color-medium-gray) 100%);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); 
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
